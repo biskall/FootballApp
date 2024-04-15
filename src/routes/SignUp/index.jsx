@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Input, PasswordInput } from "../../components";
-import { useGetNotesQuery } from "../../redux/apiQueries/notes";
-import { getNotes } from "../../redux/selectors/notes/notes";
-import { useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const navigate = useNavigate(); 
+const SignUp = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isSuccess } = useGetNotesQuery();
-  const dataObj = useSelector((state) => getNotes(state));
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,19 +20,10 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const LoginHandleSubmit = async (e) => {
-    e.preventDefault();
-    // Handle login logic here
-  };
-
   const SignUpHandleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/signup');
+    // Handle sign up logic here
   };
-
-  useEffect(() => {
-    console.log(dataObj);
-  }, [dataObj]);
 
   return (
     <Box
@@ -59,6 +48,12 @@ const Login = () => {
           sx={{ display: "flex", flexDirection: "column", gap: "10px", mb: 2 }}
         >
           <Input
+            label="Username"
+            value={username}
+            onChange={handleUsernameChange}
+            placeholder="Enter your username"
+          />
+          <Input
             label="Email"
             value={email}
             onChange={handleEmailChange}
@@ -77,18 +72,9 @@ const Login = () => {
             variant="contained"
             color="primary"
             fullWidth
-            onClick={LoginHandleSubmit}
-          >
-            Login
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            fullWidth
             onClick={SignUpHandleSubmit}
           >
-            Sign up
+            Sign Up
           </Button>
         </Box>
       </Box>
@@ -96,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

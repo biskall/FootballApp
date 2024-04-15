@@ -1,13 +1,14 @@
 import "./App.css";
 import { Header, Footer } from "./components";
-import { Login } from "./routes/index";
+import { Login, SignUp, MainRouter } from "./routes/index";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header></Header>
-      <Login></Login>
-      <Footer></Footer>
+      <Header />
+      <MainRouter></MainRouter>
+      <Footer />
     </>
   );
 }
