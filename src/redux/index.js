@@ -20,10 +20,13 @@ export const store = configureStore({
   reducer: {
     notes: slices.notesSliceReducer,
     [apiQueries.notesReducerPath]: apiQueries.notesReducer,
+    auth: slices.authSliceReducer,
+    [apiQueries.authReducerPath]: apiQueries.authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware(persistConfiguration).concat([
       apiQueries.notesMiddleware,
+      apiQueries.authMiddleware,
     ]),
 });
 
