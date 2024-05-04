@@ -1,1 +1,1 @@
-export const getUser = (state) => state.message;
+export const getUser = (state) => state.auth.user;

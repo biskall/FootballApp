@@ -1,7 +1,7 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
+import React from "react";
+import TextField from "@mui/material/TextField";
 
-function InputComponent({ label, value, onChange, placeholder }) {
+const Input = ({ label, value, onChange, placeholder }) => {
   return (
     <TextField
       label={label}
@@ -13,6 +13,6 @@ function InputComponent({ label, value, onChange, placeholder }) {
       margin="normal"
     />
   );
-}
+};
 
-export default InputComponent;
+export default Input;

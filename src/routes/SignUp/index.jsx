@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Input, PasswordInput } from "../../components";
+import { useRegisterMutation } from "../../redux/apiQueries";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [register, { isSuccess }] = useRegisterMutation();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -23,7 +25,15 @@ const SignUp = () => {
   const SignUpHandleSubmit = async (e) => {
     e.preventDefault();
     // Handle sign up logic here
+    register({ name, email, password });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log("oveddddddddddddddddd");
+    }
+    console.log("fuckkkkk it");
+  }, [isSuccess]);
 
   return (
     <Box
@@ -49,7 +59,7 @@ const SignUp = () => {
         >
           <Input
             label="Username"
-            value={username}
+            value={name}
             onChange={handleUsernameChange}
             placeholder="Enter your username"
           />

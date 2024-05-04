@@ -14,8 +14,8 @@ export const authSlice = createSlice({
       authEndpoints.getUser.matchFulfilled,
       (state, { payload }) => {
         console.log("payload", payload);
-        state.message = payload;
-        console.log("state", state);
+        state.user = payload;
+        console.log("state user => ", state.user);
       }
     );
     builder.addMatcher(

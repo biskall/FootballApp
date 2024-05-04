@@ -2,21 +2,14 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Input, PasswordInput } from "../../components";
-import { useGetNotesQuery } from "../../redux/apiQueries/notes";
-import { useLoginMutation, useGetUserQuery } from "../../redux/apiQueries";
-import { getNotes } from "../../redux/selectors/notes/notes";
-import { getUser } from "../../redux/selectors/auth/auth";
-import { useSelector } from "react-redux";
+import { useLoginMutation } from "../../redux/apiQueries";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [login, { isSuccess }] = useLoginMutation();
-  const { isSuccess } = useGetUserQuery();
-  // const dataObj = useSelector((state) => getNotes(state));
-  const dataObj = useSelector((state) => getUser(state));
+  const [login, { isSuccess }] = useLoginMutation();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -28,9 +21,9 @@ const Login = () => {
 
   const LoginHandleSubmit = async (e) => {
     e.preventDefault();
-    console.log("email =>" ,email);
-    console.log("password =>" ,password);
-    // login();
+    console.log("email =>", email);
+    console.log("password =>", password);
+    login({ email, password });
     // Handle login logic here
   };
 
@@ -39,12 +32,12 @@ const Login = () => {
     navigate("/signup");
   };
 
-  useEffect(() => {
-    if(dataObj){
-      console.log("oveddddddddddddddddd");
-    }
-    console.log("fuckkkkk it");
-  }, [dataObj]);
+  // useEffect(() => {
+  //   if(isSuccess){
+  //     console.log("oveddddddddddddddddd");
+  //   }
+  //   console.log("fuckkkkk it");
+  // }, [isSuccess]);
 
   return (
     <Box

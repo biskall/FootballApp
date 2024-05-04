@@ -1,7 +1,7 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
+import React from "react";
+import TextField from "@mui/material/TextField";
 
-function PasswordInput({ label, value, onChange, placeholder }) {
+const PasswordInput = ({ label, value, onChange, placeholder }) => {
   return (
     <TextField
       label={label}
@@ -14,6 +14,6 @@ function PasswordInput({ label, value, onChange, placeholder }) {
       margin="normal"
     />
   );
-}
+};
 
 export default PasswordInput;

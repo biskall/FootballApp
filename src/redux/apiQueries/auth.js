@@ -12,29 +12,38 @@ const authSlice = createApi({
       query: ({ email, password }) => ({
         url: "/login",
         method: "POST",
-        body: {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
           email,
           password,
-        },
+        }),
       }),
     }),
     register: builder.mutation({
       query: ({ name, email, password }) => ({
         url: `/register`,
         method: "POST",
-        body: {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           name,
           email,
           password,
-        },
+        }),
       }),
     }),
     getUser: builder.query({
-        query: () => ({
-          url: ``,
-          method: "GET",
-        }),
+      query: () => ({
+        url: `/user`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        method: "GET",
       }),
+    }),
   }),
 });
 
